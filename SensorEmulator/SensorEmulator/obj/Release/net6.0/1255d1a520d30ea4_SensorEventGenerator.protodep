@@ -1,0 +1,4 @@
+obj/Release/net6.0/Protos/SensorEventGenerator.cs \
+obj/Release/net6.0/Protos/SensorEventGeneratorGrpc.cs: /Users/ginalig/.nuget/packages/grpc.tools/2.46.1/build/native/include/google/protobuf/empty.proto\
+ /Users/ginalig/.nuget/packages/grpc.tools/2.46.1/build/native/include/google/protobuf/timestamp.proto\
+ Protos/SensorEventGenerator.proto

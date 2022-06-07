@@ -1,6 +1,6 @@
-namespace SensorEmulator.Models;
+namespace SensorEmulator;
 
-public class EventResponse
+public partial class EventResponse : IEvent
 {
     
 }

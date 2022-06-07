@@ -1,6 +1,6 @@
 namespace SensorEmulator.Models;
 
-enum SensorType
+public enum SensorType
 {
     Street,
     Room
