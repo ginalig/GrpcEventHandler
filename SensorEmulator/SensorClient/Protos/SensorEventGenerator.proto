@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 
 service EventGenerator {
   rpc EventStream(google.protobuf.Empty) returns (stream EventResponse);
+  rpc EventStreamDuplex(stream TypeRequest) returns (stream EventResponse);
 }
 
 message EventResponse {
@@ -19,7 +20,12 @@ message EventResponse {
   SensorType sensorType = 5;
 }
 
+message TypeRequest {
+  string sensorType = 1;
+}
+
 enum SensorType {
   STREET = 0;
   ROOM = 1;
+  BOTH = 2;
 }

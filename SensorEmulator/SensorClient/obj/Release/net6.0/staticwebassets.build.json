@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "vsvESv9BATY45WqkhyR84vKNryhsPgS4cLMXvIAmZq0=",
+  "Source": "SensorClient",
+  "BasePath": "_content/SensorClient",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

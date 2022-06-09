@@ -1,7 +1,8 @@
 namespace SensorClient.Models;
 
-enum SensorType
+public enum SensorType
 {
     Street,
-    Room
+    Room,
+    Both
 }
