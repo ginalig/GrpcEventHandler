@@ -10,6 +10,7 @@ builder.WebHost.ConfigureKestrel(options =>
     // Setup a HTTP/2 endpoint without TLS.
     options.ListenLocalhost(7290, o => o.Protocols =
         HttpProtocols.Http2);
+    options.ListenLocalhost(7250, o => o.Protocols = HttpProtocols.Http1);
 });
 
 builder.Services.Configure<SensorConfig>(builder.Configuration.GetSection("SensorConfig"));

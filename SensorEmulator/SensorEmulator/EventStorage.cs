@@ -5,12 +5,11 @@ namespace SensorEmulator;
 
 public class EventStorage : IEventStorage
 {
-    private ConcurrentDictionary<long, IEvent> _events = new ();
+    private ConcurrentDictionary<long, IEvent> _events = new();
     private IEvent _lastEvent;
 
     public bool TryGetEvent(long id, [MaybeNullWhen(false)] out IEvent eventResponse) => 
         _events.TryGetValue(id, out eventResponse);
-
 
     public void AddEvent(long id, IEvent eventResponse)
     {
@@ -19,4 +18,7 @@ public class EventStorage : IEventStorage
     }
 
     public IEvent LastEvent => _lastEvent;
+    public List<IEvent> LastEvents => 
+        _events.OrderBy(x => x.Key).
+            Reverse().Take(2).Select(x => x.Value).ToList();
 }

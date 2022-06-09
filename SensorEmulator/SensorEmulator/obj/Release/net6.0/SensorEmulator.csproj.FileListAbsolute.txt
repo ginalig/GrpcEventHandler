@@ -23,7 +23,7 @@
 /Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/obj/Release/net6.0/scopedcss/bundle/SensorEmulator.styles.css
 /Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/obj/Release/net6.0/SensorEmulator.csproj.CopyComplete
 /Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/obj/Release/net6.0/SensorEmulator.dll
-/Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/obj/Release/net6.0/refint/SensorEmulator.dll
 /Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/obj/Release/net6.0/SensorEmulator.pdb
 /Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/obj/Release/net6.0/SensorEmulator.genruntimeconfig.cache
 /Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/obj/Release/net6.0/ref/SensorEmulator.dll
+/Users/ginalig/RiderProjects/homework-2/SensorEmulator/SensorEmulator/bin/Release/net6.0/ref/SensorEmulator.dll

@@ -29,15 +29,18 @@ namespace SensorEmulator {
             "cm90b2J1Zi90aW1lc3RhbXAucHJvdG8iiQEKDUV2ZW50UmVzcG9uc2USCgoC",
             "aWQYASABKAMSEwoLdGVtcGVyYXR1cmUYAiABKAESEAoIaHVtaWRpdHkYAyAB",
             "KAESFQoNY2FyYm9uRGlveGlkZRgEIAEoARIuCgpzZW5zb3JUeXBlGAUgASgO",
-            "MhouU2Vuc29yRW11bGF0b3IuU2Vuc29yVHlwZSoiCgpTZW5zb3JUeXBlEgoK",
-            "BlNUUkVFVBAAEggKBFJPT00QATJYCg5FdmVudEdlbmVyYXRvchJGCgtFdmVu",
-            "dFN0cmVhbRIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRodLlNlbnNvckVtdWxh",
-            "dG9yLkV2ZW50UmVzcG9uc2UwAUIRqgIOU2Vuc29yRW11bGF0b3JiBnByb3Rv",
-            "Mw=="));
+            "MhouU2Vuc29yRW11bGF0b3IuU2Vuc29yVHlwZSIhCgtUeXBlUmVxdWVzdBIS",
+            "CgpzZW5zb3JUeXBlGAEgASgJKiwKClNlbnNvclR5cGUSCgoGU1RSRUVUEAAS",
+            "CAoEUk9PTRABEggKBEJPVEgQAjKtAQoORXZlbnRHZW5lcmF0b3ISRgoLRXZl",
+            "bnRTdHJlYW0SFi5nb29nbGUucHJvdG9idWYuRW1wdHkaHS5TZW5zb3JFbXVs",
+            "YXRvci5FdmVudFJlc3BvbnNlMAESUwoRRXZlbnRTdHJlYW1EdXBsZXgSGy5T",
+            "ZW5zb3JFbXVsYXRvci5UeXBlUmVxdWVzdBodLlNlbnNvckVtdWxhdG9yLkV2",
+            "ZW50UmVzcG9uc2UoATABQhGqAg5TZW5zb3JFbXVsYXRvcmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SensorEmulator.SensorType), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SensorEmulator.EventResponse), global::SensorEmulator.EventResponse.Parser, new[]{ "Id", "Temperature", "Humidity", "CarbonDioxide", "SensorType" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SensorEmulator.EventResponse), global::SensorEmulator.EventResponse.Parser, new[]{ "Id", "Temperature", "Humidity", "CarbonDioxide", "SensorType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SensorEmulator.TypeRequest), global::SensorEmulator.TypeRequest.Parser, new[]{ "SensorType" }, null, null, null, null)
           }));
     }
     #endregion
@@ -47,6 +50,7 @@ namespace SensorEmulator {
   public enum SensorType {
     [pbr::OriginalName("STREET")] Street = 0,
     [pbr::OriginalName("ROOM")] Room = 1,
+    [pbr::OriginalName("BOTH")] Both = 2,
   }
 
   #endregion
@@ -380,6 +384,195 @@ namespace SensorEmulator {
           }
           case 40: {
             SensorType = (global::SensorEmulator.SensorType) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class TypeRequest : pb::IMessage<TypeRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TypeRequest> _parser = new pb::MessageParser<TypeRequest>(() => new TypeRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<TypeRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SensorEmulator.SensorEventGeneratorReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TypeRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TypeRequest(TypeRequest other) : this() {
+      sensorType_ = other.sensorType_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TypeRequest Clone() {
+      return new TypeRequest(this);
+    }
+
+    /// <summary>Field number for the "sensorType" field.</summary>
+    public const int SensorTypeFieldNumber = 1;
+    private string sensorType_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SensorType {
+      get { return sensorType_; }
+      set {
+        sensorType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as TypeRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(TypeRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SensorType != other.SensorType) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (SensorType.Length != 0) hash ^= SensorType.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (SensorType.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(SensorType);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (SensorType.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(SensorType);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (SensorType.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SensorType);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(TypeRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.SensorType.Length != 0) {
+        SensorType = other.SensorType;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            SensorType = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            SensorType = input.ReadString();
             break;
           }
         }

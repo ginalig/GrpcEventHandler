@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "SensorEmulator";
+
+package SensorEmulator;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service EventGenerator {
+  rpc EventStream(google.protobuf.Empty) returns (stream EventResponse);
+}
+
+message EventResponse {
+  int64 id = 1;
+  double temperature = 2;
+  double humidity = 3;
+  double carbonDioxide = 4;
+  SensorType sensorType = 5;
+}
+
+enum SensorType {
+  STREET = 0;
+  ROOM = 1;
+}

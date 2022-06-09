@@ -12,6 +12,7 @@ public class GeneratorService : EventGenerator.EventGeneratorBase
     private readonly ILogger<GeneratorService> _logger;
 
     private static long _id = 0;
+    private static SensorType _sensorType = SensorType.Both;
 
     public GeneratorService(IOptions<SensorConfig> options, IEventStorage eventStorage, ILogger<GeneratorService> logger)
     {
@@ -38,6 +39,70 @@ public class GeneratorService : EventGenerator.EventGeneratorBase
         catch (OperationCanceledException)
         {
             _logger.LogWarning("A operation was canceled");
+        }
+    }
+
+    public override async Task EventStreamDuplex(
+        IAsyncStreamReader<TypeRequest> requestStream,
+        IServerStreamWriter<EventResponse> responseStream,
+        ServerCallContext context)
+    {
+        Random random = new();
+        var delay = _options.Value.Interval;
+        
+        try
+        {
+            await RequestTypeAsync(requestStream, context);
+
+            await EventResponseAsync(responseStream, context, delay, random);
+
+            await Task.WhenAll(RequestTypeAsync(requestStream, context),
+                EventResponseAsync(responseStream, context, delay, random));
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.LogWarning("A operation was canceled");
+        }
+    }
+
+    private async Task EventResponseAsync(IServerStreamWriter<EventResponse> responseStream, ServerCallContext context, int delay,
+        Random random)
+    {
+        while (!context.CancellationToken.IsCancellationRequested)
+        {
+            await Task.Delay(delay, context.CancellationToken);
+            if (_sensorType == SensorType.Room)
+            {
+                var roomResult = GenerateRandomResult(random, true);
+                await responseStream.WriteAsync(roomResult, context.CancellationToken);
+            }
+            else if (_sensorType == SensorType.Street)
+            {
+                var streetResult = GenerateRandomResult(random, false);
+                await responseStream.WriteAsync(streetResult, context.CancellationToken);
+            }
+            else
+            {
+                var roomResult = GenerateRandomResult(random, true);
+                await responseStream.WriteAsync(roomResult, context.CancellationToken);
+                var streetResult = GenerateRandomResult(random, false);
+                await responseStream.WriteAsync(streetResult, context.CancellationToken);
+            }
+        }
+    }
+
+    private async Task RequestTypeAsync(IAsyncStreamReader<TypeRequest> requestStream, ServerCallContext context)
+    {
+        while (await requestStream.MoveNext() && !context.CancellationToken.IsCancellationRequested)
+        {
+            _sensorType = requestStream.Current.SensorType switch
+            {
+                "Room" => SensorType.Room,
+                "Street" => SensorType.Street,
+                "Both" => SensorType.Both,
+                _ => SensorType.Both
+            };
+            _logger.LogInformation(requestStream.Current.SensorType.ToString());
         }
     }
 

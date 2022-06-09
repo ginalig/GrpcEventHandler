@@ -13,9 +13,13 @@ public class EventsController : ControllerBase
     }
     
     [HttpGet]
-    public Task<EventResponse> GetLastEvent()
+    public Task<List<EventResponse>> GetLastEvents()
     {
-        var eventResponse = (EventResponse)_eventStorage.LastEvent;
-        return Task.FromResult(eventResponse);
+        List<EventResponse> result = new();
+        foreach (var @event in _eventStorage.LastEvents)
+        {
+            result.Add((EventResponse)@event);
+        }
+        return Task.FromResult(result);
     }
 }
