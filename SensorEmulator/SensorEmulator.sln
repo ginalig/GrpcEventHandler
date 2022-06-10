@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEmulator", "SensorEmulator\SensorEmulator.csproj", "{FF57943D-0F94-4647-9B3D-B5610083AF79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorClient", "SensorClient\SensorClient.csproj", "{42FFA03F-5455-4853-BBC8-31F61818E87C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{FF57943D-0F94-4647-9B3D-B5610083AF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF57943D-0F94-4647-9B3D-B5610083AF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF57943D-0F94-4647-9B3D-B5610083AF79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42FFA03F-5455-4853-BBC8-31F61818E87C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42FFA03F-5455-4853-BBC8-31F61818E87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42FFA03F-5455-4853-BBC8-31F61818E87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42FFA03F-5455-4853-BBC8-31F61818E87C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

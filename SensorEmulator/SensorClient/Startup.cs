@@ -33,8 +33,9 @@ namespace SensorClient
             {
                 o.Address = new Uri("http://localhost:7290");
             });
-            services.AddHostedService<SensorHostedService>();
+            //services.AddHostedService<SensorHostedService>();
             services.AddSingleton<IEventStorage, EventStorage>();
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> looger)
@@ -43,7 +44,7 @@ namespace SensorClient
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                endpoints.MapControllers();
             });
         }
     }

@@ -35,7 +35,6 @@ public class SensorHostedService : BackgroundService
         await using var scope = _provider.CreateAsyncScope();
         var client = scope.ServiceProvider.GetRequiredService<SensorEmulator.EventGenerator.EventGeneratorClient>();
         using var eventResponseStream = client.EventStream(new Empty(), cancellationToken: stoppingToken);
-        using var eventStreamDuplex = client.EventStreamDuplex(null, null, stoppingToken);
         while (await eventResponseStream.ResponseStream.MoveNext(stoppingToken))
         {
             var e = eventResponseStream.ResponseStream.Current;
