@@ -1,5 +1,6 @@
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.Extensions.Options;
 using SensorEmulator.Options;
 
@@ -49,15 +50,50 @@ public class GeneratorService : EventGenerator.EventGeneratorBase
     {
         Random random = new();
         var delay = _options.Value.Interval;
-        
+        var typeRequest = "Both";
         try
         {
-            await RequestTypeAsync(requestStream, context);
+            var readTask = Task.Run(async () =>
+            {
+                await foreach (var message in requestStream.ReadAllAsync())
+                {
+                    typeRequest = message.SensorType;
+                }
+            });
 
-            await EventResponseAsync(responseStream, context, delay, random);
 
-            await Task.WhenAll(RequestTypeAsync(requestStream, context),
-                EventResponseAsync(responseStream, context, delay, random));
+            while (!readTask.IsCompleted && !context.CancellationToken.IsCancellationRequested)
+            {
+                if (typeRequest == "Room")
+                {
+                    var roomResult = GenerateRandomResult(random, true);
+                    await responseStream.WriteAsync(roomResult, context.CancellationToken);
+                }
+                else if (typeRequest == "Street")
+                {
+                    var streetResult = GenerateRandomResult(random, false);
+                    await responseStream.WriteAsync(streetResult, context.CancellationToken);
+                }
+                else
+                {
+                    var roomResult = GenerateRandomResult(random, true);
+                    await responseStream.WriteAsync(roomResult, context.CancellationToken);
+                    var streetResult = GenerateRandomResult(random, false);
+                    await responseStream.WriteAsync(streetResult, context.CancellationToken);
+                }
+
+                await Task.Delay(delay, context.CancellationToken);
+            }
+            // await RequestTypeAsync(requestStream, context);
+            //
+            // await EventResponseAsync(responseStream, context, delay, random);
+            //
+            // await Task.WhenAll(RequestTypeAsync(requestStream, context),
+            //     EventResponseAsync(responseStream, context, delay, random));
+        }
+        catch (ConnectionAbortedException)
+        {
+            _logger.LogWarning("Connection aborted");
         }
         catch (OperationCanceledException)
         {
@@ -88,6 +124,7 @@ public class GeneratorService : EventGenerator.EventGeneratorBase
                 var streetResult = GenerateRandomResult(random, false);
                 await responseStream.WriteAsync(streetResult, context.CancellationToken);
             }
+            _logger.LogInformation("sis");
         }
     }
 

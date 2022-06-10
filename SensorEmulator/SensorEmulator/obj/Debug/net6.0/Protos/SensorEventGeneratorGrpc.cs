@@ -49,6 +49,8 @@ namespace SensorEmulator {
     static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.WellKnownTypes.Empty.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::SensorEmulator.EventResponse> __Marshaller_SensorEmulator_EventResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::SensorEmulator.EventResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::SensorEmulator.TypeRequest> __Marshaller_SensorEmulator_TypeRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::SensorEmulator.TypeRequest.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::SensorEmulator.EventResponse> __Method_EventStream = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::SensorEmulator.EventResponse>(
@@ -56,6 +58,14 @@ namespace SensorEmulator {
         __ServiceName,
         "EventStream",
         __Marshaller_google_protobuf_Empty,
+        __Marshaller_SensorEmulator_EventResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::SensorEmulator.TypeRequest, global::SensorEmulator.EventResponse> __Method_EventStreamDuplex = new grpc::Method<global::SensorEmulator.TypeRequest, global::SensorEmulator.EventResponse>(
+        grpc::MethodType.DuplexStreaming,
+        __ServiceName,
+        "EventStreamDuplex",
+        __Marshaller_SensorEmulator_TypeRequest,
         __Marshaller_SensorEmulator_EventResponse);
 
     /// <summary>Service descriptor</summary>
@@ -70,6 +80,12 @@ namespace SensorEmulator {
     {
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task EventStream(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::IServerStreamWriter<global::SensorEmulator.EventResponse> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task EventStreamDuplex(grpc::IAsyncStreamReader<global::SensorEmulator.TypeRequest> requestStream, grpc::IServerStreamWriter<global::SensorEmulator.EventResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -113,6 +129,16 @@ namespace SensorEmulator {
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_EventStream, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::SensorEmulator.TypeRequest, global::SensorEmulator.EventResponse> EventStreamDuplex(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return EventStreamDuplex(new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::SensorEmulator.TypeRequest, global::SensorEmulator.EventResponse> EventStreamDuplex(grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_EventStreamDuplex, null, options);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override EventGeneratorClient NewInstance(ClientBaseConfiguration configuration)
@@ -127,7 +153,8 @@ namespace SensorEmulator {
     public static grpc::ServerServiceDefinition BindService(EventGeneratorBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_EventStream, serviceImpl.EventStream).Build();
+          .AddMethod(__Method_EventStream, serviceImpl.EventStream)
+          .AddMethod(__Method_EventStreamDuplex, serviceImpl.EventStreamDuplex).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -138,6 +165,7 @@ namespace SensorEmulator {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, EventGeneratorBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_EventStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::SensorEmulator.EventResponse>(serviceImpl.EventStream));
+      serviceBinder.AddMethod(__Method_EventStreamDuplex, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::SensorEmulator.TypeRequest, global::SensorEmulator.EventResponse>(serviceImpl.EventStreamDuplex));
     }
 
   }
